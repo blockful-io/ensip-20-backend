@@ -51,3 +51,13 @@ deploy-arb-full:
 			&& \
 	) true; \
 	echo "All contracts deployed successfully."
+
+deploy-op-resolver:
+	@set -e;
+	echo "Deploying OP L1Resolver...";
+	forge script $(deploy_dir)/OPResolver.sol \
+		--rpc-url op_sepolia \
+		--broadcast \
+		-vvv \
+		--private-key $(PRIVATE_KEY) \
+		--verify;
