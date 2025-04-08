@@ -12,14 +12,12 @@ contract OPResolverScript is DeployHelper {
             IGatewayVerifier(0x5F1681D608e50458D96F43EbAb1137bA1d2A2E4D);
 
         address resolver =
-            getContractAddress("L1Resolver", "PublicResolver", 11155420);
+            getContractAddress("L2Resolver", "PublicResolver", 11155420);
         address registrar = getContractAddress("SubdomainController", 11155420);
         string memory metadataUrl = vm.envString("METADATA_URL");
 
         vm.broadcast();
-        new L1Resolver(
-            verifier, resolver, registrar, block.chainid, metadataUrl
-        );
+        new L1Resolver(verifier, resolver, registrar, 11155420, metadataUrl);
     }
 
 }
