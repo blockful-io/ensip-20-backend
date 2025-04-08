@@ -15,8 +15,8 @@ import {ReverseRegistrar} from
     "@ens-contracts/reverseRegistrar/ReverseRegistrar.sol";
 import {NameWrapper} from "@ens-contracts/wrapper/NameWrapper.sol";
 
-import {DeployHelper} from "../DeployHelper.sol";
-import {ENSHelper} from "../ENSHelper.sol";
+import {DeployHelper} from "../../DeployHelper.sol";
+import {ENSHelper} from "../../ENSHelper.sol";
 
 contract ETHRegistrarControllerScript is DeployHelper, ENSHelper {
 

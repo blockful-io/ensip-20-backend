@@ -9,8 +9,8 @@ import {StaticMetadataService} from
 import {NameWrapper} from "@ens-contracts/wrapper/NameWrapper.sol";
 import {IMetadataService} from "@ens-contracts/wrapper/IMetadataService.sol";
 
-import {DeployHelper} from "../DeployHelper.sol";
-import {ENSHelper} from "../ENSHelper.sol";
+import {DeployHelper} from "../../DeployHelper.sol";
+import {ENSHelper} from "../../ENSHelper.sol";
 
 contract NameWrapperScript is DeployHelper, ENSHelper {
 
