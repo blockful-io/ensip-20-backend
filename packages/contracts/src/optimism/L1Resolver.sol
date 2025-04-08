@@ -50,73 +50,56 @@ contract L1Resolver is
     }
 
     function addr(bytes32 node) public view returns (address payable) {
-        GatewayRequest memory r = GatewayFetcher.newRequest(2).setTarget(
+        GatewayRequest memory r = GatewayFetcher.newRequest(1).setTarget(
             targetResolver
-        ).setSlot(RECORD_VERSIONS_SLOT).push(node).follow().read().setOutput(0)
-            .pushOutput(0).setSlot(VERSIONABLE_ADDRESSES_SLOT).follow().push(node)
-            .follow().push(COIN_TYPE_ETH).follow().readBytes().setOutput(1);
+        ).setSlot(RECORD_VERSIONS_SLOT).push(node).follow().read().dup().setSlot(
+            VERSIONABLE_ADDRESSES_SLOT
+        ).follow().push(node).follow().push(COIN_TYPE_ETH).follow().readBytes()
+            .setOutput(0);
 
-        string[] memory urls = new string[](0);
-        fetch(_verifier, r, this.addrCallback.selector, abi.encode(true), urls);
+        fetch(_verifier, r, this.addrCallback.selector);
     }
 
     function addrCallback(
         bytes[] calldata values,
-        uint8
+        uint8,
+        bytes calldata
     )
         external
         pure
-        returns (bytes memory)
+        returns (address payable)
     {
-        return abi.encode(address(bytes20(values[1])));
+        return payable(address(bytes20(values[0])));
     }
 
     function addr(
         bytes32 node,
         uint256 coinType
     )
-        internal
+        public
         view
         returns (bytes memory)
     {
-        GatewayRequest memory r = GatewayFetcher.newRequest(2).setTarget(
+        GatewayRequest memory r = GatewayFetcher.newRequest(1).setTarget(
             targetResolver
-        ).setSlot(RECORD_VERSIONS_SLOT).push(node).follow().read().setOutput(0)
-            .pushOutput(0).setSlot(VERSIONABLE_ADDRESSES_SLOT).follow().push(node)
-            .follow().push(coinType).follow().readBytes().setOutput(1);
+        ).setSlot(RECORD_VERSIONS_SLOT).push(node).follow().read().dup().setSlot(
+            VERSIONABLE_ADDRESSES_SLOT
+        ).follow().push(node).follow().push(coinType).follow().readBytes()
+            .setOutput(0);
 
-        string[] memory urls = new string[](0);
-        fetch(_verifier, r, this.addrCallback.selector, abi.encode(true), urls);
-    }
-
-    function trimLeadingZeros(bytes memory data)
-        public
-        pure
-        returns (bytes memory)
-    {
-        uint256 startIndex = 0;
-        uint256 length = data.length;
-        // Find the first non-zero byte
-        while (startIndex < length && data[startIndex] == 0) startIndex++;
-        // If all bytes are zero, return an empty bytes array
-        if (startIndex == length) return new bytes(0);
-        // Copy the trimmed data into a new bytes array
-        bytes memory trimmed = new bytes(length - startIndex);
-        for (uint256 i = startIndex; i < length; i++) {
-            trimmed[i - startIndex] = data[i];
-        }
-        return trimmed;
+        fetch(_verifier, r, this.addrCoinCallback.selector);
     }
 
     function addrCoinCallback(
         bytes[] calldata values,
-        uint8
+        uint8,
+        bytes calldata
     )
         external
         pure
         returns (bytes memory)
     {
-        return abi.encode(values[1]);
+        return values[0];
     }
 
     function text(
@@ -150,21 +133,18 @@ contract L1Resolver is
         return values[0];
     }
 
-    function contenthash(bytes32 node) public view returns (bytes memory) {
-        // Create a gateway request to read profile data
-        GatewayRequest memory r = GatewayFetcher.newRequest(2).setTarget(
+    function contenthash(bytes32 node)
+        public
+        view
+        override
+        returns (bytes memory)
+    {
+        GatewayRequest memory r = GatewayFetcher.newRequest(1).setTarget(
             targetResolver
-        ).setSlot(1).push(node).follow().read()
-            // Start at slot 1 (nodeProfiles)
-            // Read the profileId for the node
-            .setOutput(0);
-        // Push the profileId back onto the stack
-        r = r.pushOutput(0).setSlot(0).follow().offset(5).readBytes()
-            // Get the Profile assigned to that ID
-            // Offset to the contenthash record
-            .setOutput(1);
+        ).setSlot(RECORD_VERSIONS_SLOT).push(node).follow().read().dup().setSlot(
+            VERSIONABLE_HASHES_SLOT
+        ).follow().push(node).follow().readBytes().setOutput(0);
 
-        // Fetch the data using the gateway
         fetch(_verifier, r, this.contenthashCallback.selector);
     }
 
@@ -177,7 +157,7 @@ contract L1Resolver is
         pure
         returns (bytes memory)
     {
-        return values[1];
+        return values[0];
     }
 
 }
