@@ -135,9 +135,23 @@ dist
 **/dist/**
 
 # foundry
-**/broadcast/**
 **/cache/**
 **/bin/**
 *.db
 
 .vscode/settings.json
+
+
+
+# First, ignore everything in the broadcast directory
+/broadcast/*
+# Then, allow directories (but not files directly under broadcast)
+!/broadcast/*/
+# Allow subdirectories (chain directories)
+!/broadcast/*/*/
+# Ignore all JSON files in the chain directories
+/broadcast/*/*/*.json
+# But keep only run-latest.json files
+!/broadcast/*/*/run-latest.json
+# Ignore dry-run directories and their contents
+/broadcast/*/*/dry-run/
