@@ -30,8 +30,9 @@ This project not only makes ENS more efficient and cost-effective but also opens
 | Contract                    | Network  | Address                                                                                                                                |
 | --------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | DatabaseResolver            | Ethereum | [0x7dc07bc3a73e6b3d231dcf1b6f23ed20cb12132c](https://sepolia.etherscan.io/address/0x7dc07bc3a73e6b3d231dcf1b6f23ed20cb12132c)          |
-| ArbitrumVerifier            | Ethereum | [0x8fc4a214705e3c40032e99f867d964c012bf8efb](https://sepolia.etherscan.io/address/0x8fc4a214705e3c40032e99f867d964c012bf8efb)          |
-| L1Resolver                  | Ethereum | [0x029928615ffc0cb209747acc9c6eb4c504b527f6](https://sepolia.etherscan.io/address/0x029928615ffc0cb209747acc9c6eb4c504b527f6)          |
+|                             |          |                                                                                                                                        |
+| Arb Verifier                | Ethereum | [0x8fc4a214705e3c40032e99f867d964c012bf8efb](https://sepolia.etherscan.io/address/0x8fc4a214705e3c40032e99f867d964c012bf8efb)          |
+| Arb L1Resolver              | Ethereum | [0x029928615ffc0cb209747acc9c6eb4c504b527f6](https://sepolia.etherscan.io/address/0x029928615ffc0cb209747acc9c6eb4c504b527f6)          |
 | ENSRegistry                 | Arbitrum | [0x8d55e297c37993ebbd2e7a8d7688f7e5b35f1b50](https://sepolia.arbiscan.io/address/0x8d55e297c37993ebbd2e7a8d7688f7e5b35f1b50)           |
 | ReverseRegistrar            | Arbitrum | [0xb3c9ff08671bbadddd0436cc46fbfa005c8da0a7](https://sepolia.arbiscan.io/address/0xb3c9ff08671bbadddd0436cc46fbfa005c8da0a7)           |
 | BaseRegistrarImplementation | Arbitrum | [0x2C6a113C513fa0fd404abcCE3aC8a4BE16ccb651](https://sepolia.arbiscan.io/address/0x2C6a113C513fa0fd404abcCE3aC8a4BE16ccb651)           |
@@ -39,8 +40,9 @@ This project not only makes ENS more efficient and cost-effective but also opens
 | ETHRegistrarController      | Arbitrum | [0x263c644d8f5d4bdb44cfab020491ec6fc4ca5271](https://sepolia.arbiscan.io/address/0x263c644d8f5d4bdb44cfab020491ec6fc4ca5271)           |
 | SubdomainController         | Arbitrum | [0x2c5bec2d955d5d15be98df0a0b3b00611d49fa9a](https://sepolia.arbiscan.io/address/0x2c5bec2d955d5d15be98df0a0b3b00611d49fa9a)           |
 | PublicResolver              | Arbitrum | [0x0a33f065c9c8f0F5c56BB84b1593631725F0f3af](https://sepolia.arbiscan.io/address/0x0a33f065c9c8f0F5c56BB84b1593631725F0f3af)           |
-| Verifier                    | Optimism | [0x5F1681D608e50458D96F43EbAb1137bA1d2A2E4D](https://sepolia-optimism.etherscan.io/address/0x5F1681D608e50458D96F43EbAb1137bA1d2A2E4D) |
-| L1Resolver                  | Optimism | [0x3fb3230d65DA8F2Ce71B1b7c5C9E56bdFfC2c40a](https://sepolia-optimism.etherscan.io/address/0x3fb3230d65DA8F2Ce71B1b7c5C9E56bdFfC2c40a) |
+|                             |          |                                                                                                                                        |
+| OP Verifier                 | Ethereum | [0x5F1681D608e50458D96F43EbAb1137bA1d2A2E4D](https://sepolia-optimism.etherscan.io/address/0x5F1681D608e50458D96F43EbAb1137bA1d2A2E4D) |
+| OP L1Resolver               | Ethereum | [0x6291D6ceAFFaBf2e6AFB1D626aDAe1d76BFE11fa](https://sepolia-optimism.etherscan.io/address/0x6291D6ceAFFaBf2e6AFB1D626aDAe1d76BFE11fa) |
 | ENSRegistry                 | Optimism | [0x28848853CED9B5f5702E7995471514A4b751d25d](https://sepolia-optimism.etherscan.io/address/0x28848853CED9B5f5702E7995471514A4b751d25d) |
 | ReverseRegistrar            | Optimism | [0x72CD87Ee0F151072A5D265fd7093d7FBa13Abc47](https://sepolia-optimism.etherscan.io/address/0x72CD87Ee0F151072A5D265fd7093d7FBa13Abc47) |
 | BaseRegistrarImplementation | Optimism | [0x72CB51fBF9fa715AC7004b33c001385De28Ed504](https://sepolia-optimism.etherscan.io/address/0x72CB51fBF9fa715AC7004b33c001385De28Ed504) |
