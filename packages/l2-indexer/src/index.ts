@@ -145,10 +145,34 @@ ponder.on('PublicResolver:AddressChanged', async ({ event, context }) => {
       createdAt: new Date(
         parseInt(event.block.timestamp.toString()) * 1000,
       ).toISOString(),
-      updatedAt: new Date().toISOString(),
+      updatedAt: new Date(
+        parseInt(event.block.timestamp.toString()) * 1000,
+      ).toISOString(),
     },
     update: {
       address: event.args.newAddress,
+      updatedAt: new Date().toISOString(),
+    },
+  })
+})
+
+ponder.on('PublicResolver:ContenthashChanged', async ({ event, context }) => {
+  const { contenthash } = context.db
+
+  await contenthash.upsert({
+    id: event.args.node,
+    create: {
+      domain: event.args.node,
+      contenthash: event.args.hash,
+      createdAt: new Date(
+        parseInt(event.block.timestamp.toString()) * 1000,
+      ).toISOString(),
+      updatedAt: new Date(
+        parseInt(event.block.timestamp.toString()) * 1000,
+      ).toISOString(),
+    },
+    update: {
+      contenthash: event.args.hash,
       updatedAt: new Date().toISOString(),
     },
   })
