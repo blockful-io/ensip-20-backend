@@ -8,11 +8,17 @@ import {
 import {GatewayFetchTarget} from "@unruggable/gateways/GatewayFetchTarget.sol";
 import {IGatewayVerifier} from "@unruggable/gateways/IGatewayVerifier.sol";
 import {AddrResolver} from "@ens-contracts/resolvers/profiles/AddrResolver.sol";
+import {IAddrResolver} from
+    "@ens-contracts/resolvers/profiles/IAddrResolver.sol";
+import {IAddressResolver} from
+    "@ens-contracts/resolvers/profiles/IAddressResolver.sol";
 import {TextResolver} from "@ens-contracts/resolvers/profiles/TextResolver.sol";
 import {ContentHashResolver} from
     "@ens-contracts/resolvers/profiles/ContentHashResolver.sol";
 import {IMulticallable} from "@ens-contracts/resolvers/IMulticallable.sol";
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+import {IExtendedResolver} from
+    "@ens-contracts/resolvers/profiles/IExtendedResolver.sol";
 
 import {
     OffchainRegister,
@@ -24,6 +30,7 @@ import {ENSIP16} from "../ENSIP16.sol";
 contract L1Resolver is
     IERC165,
     GatewayFetchTarget,
+    IExtendedResolver,
     AddrResolver,
     TextResolver,
     ContentHashResolver,
@@ -100,6 +107,40 @@ contract L1Resolver is
         ) _offChainStorage(targetResolver);
 
         revert FunctionNotSupported();
+    }
+
+    function resolve(
+        bytes calldata, /* name */
+        bytes calldata data
+    )
+        external
+        view
+        returns (bytes memory result)
+    {
+        bytes4 selector = bytes4(data);
+
+        if (selector == IAddrResolver.addr.selector) {
+            bytes32 node = abi.decode(data[4:], (bytes32));
+            addr(node);
+        }
+        if (selector == IAddressResolver.addr.selector) {
+            (bytes32 node, uint256 cointype) =
+                abi.decode(data[4:], (bytes32, uint256));
+            return addr(node, cointype);
+        }
+        if (selector == TextResolver.text.selector) {
+            (bytes32 node, string memory key) =
+                abi.decode(data[4:], (bytes32, string));
+            return bytes(text(node, key));
+        }
+        if (selector == ContentHashResolver.contenthash.selector) {
+            bytes32 node = abi.decode(data[4:], (bytes32));
+            return contenthash(node);
+        }
+        if (selector == this.getOperationHandler.selector) {
+            (bytes memory _data) = abi.decode(data[4:], (bytes));
+            this.getOperationHandler(_data);
+        }
     }
 
     function register(RegisterRequest calldata) external payable {
@@ -205,7 +246,7 @@ contract L1Resolver is
         pure
         returns (bytes memory)
     {
-        return values[0];
+        return abi.encode(values[0]);
     }
 
     function setText(
@@ -249,7 +290,7 @@ contract L1Resolver is
         pure
         returns (bytes memory)
     {
-        return values[0];
+        return abi.encode(string(values[0]));
     }
 
     function setContenthash(
@@ -325,6 +366,7 @@ contract L1Resolver is
             || interfaceID == type(ContentHashResolver).interfaceId
             || interfaceID == type(IMulticallable).interfaceId
             || interfaceID == type(OffchainRegister).interfaceId
+            || interfaceID == type(IExtendedResolver).interfaceId
             || super.supportsInterface(interfaceID);
     }
 
