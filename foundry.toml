@@ -13,6 +13,7 @@ remappings = [
   "@eth-optimism/contracts-bedrock/src/libraries=packages/contracts/lib/optimism-bedrock-contracts",
   "@nitro-contracts=node_modules/@arbitrum/nitro-contracts",
   "@evmgateway=packages/contracts/src/evmgateway",
+  "@unruggable/gateways=node_modules/@unruggable/gateways/contracts",
 ]
 fs_permissions = [
   { access = "read", path = "./broadcast" },
@@ -36,6 +37,7 @@ sepolia = { key = "${ETHERSCAN_KEY}" }
 [rpc_endpoints]
 sepolia = "${RPC_URL}"
 arb_sepolia = "${L2_RPC_URL}"
+op_sepolia = "${RPC_URL}"
 
 
 [fmt]

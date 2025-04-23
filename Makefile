@@ -10,15 +10,15 @@ ETHERSCAN_API_KEY?=VEJ7GISNRKFUESRPC4W4D3ZEM2P9B4J6C4
 include .env
 
 deploy-arb-l1:
-	@set -e; \
-	echo "Deploying ArbitrumVerifier..." && \
+	@set -e;
+	echo "Deploying ArbitrumVerifier...";
 	forge script $(deploy_dir)/ArbitrumVerifier.sol \
 		--rpc-url sepolia \
 		--broadcast \
 		-vvv \
 		--private-key $(PRIVATE_KEY) \
-		--verify && \
-	echo "Deploying L1ArbitrumResolver..." && \
+		--verify;
+	echo "Deploying L1ArbitrumResolver...";
 	forge script $(deploy_dir)/L1ArbitrumResolver.sol \
 		--rpc-url sepolia \
 		--broadcast \
@@ -27,8 +27,8 @@ deploy-arb-l1:
 		--verify;
 
 deploy-arb-resolver:
-	@set -e; \
-	echo "Deploying L2ArbitrumResolver..." && \
+	@set -e;
+	echo "Deploying L2ArbitrumResolver...";
 	forge script $(deploy_dir)/L2ArbitrumResolver.sol \
 		--rpc-url arb_sepolia \
 		--broadcast \
@@ -39,15 +39,26 @@ deploy-arb-resolver:
 	
 CONTRACTS := ENSRegistry ReverseRegistrar BaseRegistrarImplementation NameWrapper ETHRegistrarController SubdomainController L2ArbitrumResolver
 deploy-arb-full:
-	@set -e; \
+	@set -e;
 	$(foreach contract,$(CONTRACTS),\
-		echo "Deploying $(contract)..." && \
+		echo "Deploying $(contract)...";
 		forge script $(deploy_dir)/$(contract).sol \
 			--rpc-url arb_sepolia \
 			--broadcast \
 			-vvv \
 			--private-key $(PRIVATE_KEY) \
 			--verify \
-			&& \
+		;
 	) true; \
 	echo "All contracts deployed successfully."
+
+
+deploy-op-resolver:
+	@set -e;
+	echo "Deploying OP L1Resolver...";
+	forge script $(deploy_dir)/optimism/L1Resolver.sol \
+		--rpc-url op_sepolia \
+		--broadcast \
+		-vvv \
+		--private-key $(PRIVATE_KEY) \
+		--verify;

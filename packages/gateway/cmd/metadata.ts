@@ -20,10 +20,6 @@ const _ = (async () => {
   if (!dbUrl) {
     throw new Error('DATABASE_URL is required')
   }
-  const resolverAddress = process.env.RESOLVER_ADDRESS as Hex
-  if (!resolverAddress) {
-    throw new Error('RESOLVER_ADDRESS is required')
-  }
 
   const synchronize = process.env.DB_MIGRATE
     ? process.env.DB_MIGRATE === 'true'
@@ -62,7 +58,6 @@ const _ = (async () => {
           name,
           repo,
           client: ethClient,
-          resolverAddress,
         }),
     },
   }

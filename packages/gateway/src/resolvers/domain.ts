@@ -23,24 +23,24 @@ interface DomainResolverProps {
   name: { name: string }
   repo: ReadRepository
   client: Client
-  resolverAddress: Hex
 }
 
 export async function domainResolver({
   name: { name },
   repo,
   client,
-  resolverAddress,
 }: DomainResolverProps): Promise<DomainMetadata | undefined> {
   name = normalize(name)
   const node = namehash(name)
   const domain = await repo.getDomain({ node, includeRelations: true })
-  const resolver = domain?.resolver || (await client.getResolver(node))
-  if (resolver !== resolverAddress) return
+  const resolver = (domain?.resolver || (await client.getResolver(node))) as Hex
+  if (!resolver) return
 
   const label = extractLabelFromName(name)
   const parent = extractParentFromName(name)
-  const expiryDate = await client.getExpireDate(labelhash(label))
+  const expiryDate = domain?.ttl
+    ? BigInt(domain?.ttl)
+    : await client.getExpireDate(labelhash(label))
 
   const subdomains = await repo.getSubdomains({ node })
   const subdomainsMetadata = subdomains.map((sd) => {

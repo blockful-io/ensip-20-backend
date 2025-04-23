@@ -5,8 +5,8 @@ import {ReverseRegistrar} from
     "@ens-contracts/reverseRegistrar/ReverseRegistrar.sol";
 import {ENSRegistry} from "@ens-contracts/registry/ENSRegistry.sol";
 
-import {DeployHelper} from "../DeployHelper.sol";
-import {ENSHelper} from "../ENSHelper.sol";
+import {DeployHelper} from "../../DeployHelper.sol";
+import {ENSHelper} from "../../ENSHelper.sol";
 
 contract ReverseRegistrarScript is DeployHelper, ENSHelper {
 

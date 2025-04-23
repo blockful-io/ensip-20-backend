@@ -50,7 +50,6 @@ describe('Metadata API', () => {
               name,
               repo,
               client,
-              resolverAddress: '0xresolver',
             }),
         },
       },
@@ -63,7 +62,7 @@ describe('Metadata API', () => {
     domain = new Domain()
     domain.name = 'public.eth'
     domain.node = node
-    domain.ttl = 300
+    domain.ttl = '300'
     domain.parent = namehash('eth')
     domain.resolver = '0xresolver'
     domain.resolverVersion = '1'
@@ -241,7 +240,7 @@ describe('Metadata API', () => {
     const d = new Domain()
     d.name = 'd1.public.eth'
     d.node = node
-    d.ttl = 300
+    d.ttl = '300'
     d.parent = namehash('public.eth')
     d.resolver = '0xresolver'
     d.resolverVersion = '1'
@@ -335,7 +334,7 @@ describe('Metadata API', () => {
           },
         ],
       },
-      expiryDate: 0n,
+      expiryDate: 300n,
       registerDate: BigInt(d.createdAt.getTime()),
     }
 

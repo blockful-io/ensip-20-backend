@@ -24,7 +24,6 @@ import { addEnsContracts } from '@ensdomains/ensjs'
 import { abi } from '@blockful/contracts/out/DatabaseResolver.sol/DatabaseResolver.json'
 import { abi as urAbi } from '@blockful/contracts/out/UniversalResolver.sol/UniversalResolver.json'
 import { abi as scAbi } from '@blockful/contracts/out/SubdomainController.sol/SubdomainController.json'
-import { abi as nwAbi } from '@blockful/contracts/out/NameWrapper.sol/NameWrapper.json'
 import { MessageData, DomainData } from '@blockful/gateway/src/types'
 import { getRevertErrorData, getChain, handleDBStorage } from './client'
 
@@ -81,14 +80,10 @@ const _ = (async () => {
           owner: signer.address,
           duration,
           secret: zeroHash,
+          resolver,
           extraData: zeroHash,
         },
       ],
-    },
-    {
-      functionName: 'setResolver',
-      abi: nwAbi,
-      args: [node, resolver],
     },
     {
       functionName: 'setText',
@@ -189,7 +184,7 @@ const _ = (async () => {
 
             if (!registerParams.available) {
               console.log('Domain unavailable')
-              return
+              continue
             }
           }
           const { request } = await l2Client.simulateContract({
@@ -201,7 +196,7 @@ const _ = (async () => {
             account: signer,
           })
           await l2Client.writeContract(request)
-          return
+          continue
         }
         default:
           console.error('error registering domain: ', { err })

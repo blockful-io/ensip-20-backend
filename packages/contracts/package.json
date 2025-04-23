@@ -15,9 +15,10 @@
   },
   "dependencies": {
     "@arbitrum/nitro-contracts": "^1.2.1",
-    "@openzeppelin/contracts": "^4.1.0",
     "@ensdomains/buffer": "^0.1.1",
     "@ensdomains/ens-contracts": "1.2.2",
+    "@openzeppelin/contracts": "^4.1.0",
+    "@unruggable/gateways": "^1.0.0",
     "forge-std": "github:foundry-rs/forge-std"
   }
 }
