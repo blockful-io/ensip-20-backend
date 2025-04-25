@@ -41,8 +41,8 @@ This project not only makes ENS more efficient and cost-effective but also opens
 | SubdomainController         | Arbitrum | [0x2c5bec2d955d5d15be98df0a0b3b00611d49fa9a](https://sepolia.arbiscan.io/address/0x2c5bec2d955d5d15be98df0a0b3b00611d49fa9a)           |
 | PublicResolver              | Arbitrum | [0x0a33f065c9c8f0F5c56BB84b1593631725F0f3af](https://sepolia.arbiscan.io/address/0x0a33f065c9c8f0F5c56BB84b1593631725F0f3af)           |
 |                             |          |                                                                                                                                        |
-| OP Verifier                 | Ethereum | [0x5F1681D608e50458D96F43EbAb1137bA1d2A2E4D](https://sepolia-optimism.etherscan.io/address/0x5F1681D608e50458D96F43EbAb1137bA1d2A2E4D) |
-| OP L1Resolver               | Ethereum | [0x6291D6ceAFFaBf2e6AFB1D626aDAe1d76BFE11fa](https://sepolia-optimism.etherscan.io/address/0x6291D6ceAFFaBf2e6AFB1D626aDAe1d76BFE11fa) |
+| OP Verifier                 | Ethereum | [0x5F1681D608e50458D96F43EbAb1137bA1d2A2E4D](https://sepolia.etherscan.io/address/0x5F1681D608e50458D96F43EbAb1137bA1d2A2E4D) |
+| OP L1Resolver               | Ethereum | [0x6291D6ceAFFaBf2e6AFB1D626aDAe1d76BFE11fa](https://sepolia.etherscan.io/address/0x6291D6ceAFFaBf2e6AFB1D626aDAe1d76BFE11fa) |
 | ENSRegistry                 | Optimism | [0x28848853CED9B5f5702E7995471514A4b751d25d](https://sepolia-optimism.etherscan.io/address/0x28848853CED9B5f5702E7995471514A4b751d25d) |
 | ReverseRegistrar            | Optimism | [0x72CD87Ee0F151072A5D265fd7093d7FBa13Abc47](https://sepolia-optimism.etherscan.io/address/0x72CD87Ee0F151072A5D265fd7093d7FBa13Abc47) |
 | BaseRegistrarImplementation | Optimism | [0x72CB51fBF9fa715AC7004b33c001385De28Ed504](https://sepolia-optimism.etherscan.io/address/0x72CB51fBF9fa715AC7004b33c001385De28Ed504) |
