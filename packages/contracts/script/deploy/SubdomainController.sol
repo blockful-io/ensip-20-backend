@@ -18,8 +18,9 @@ contract SubdomainControllerScript is DeployHelper, ENSHelper {
         vm.startBroadcast();
 
         uint256 subdomainPrice = 0.001 ether;
-        SubdomainController subdomainController =
-            new SubdomainController(address(nameWrapper), subdomainPrice);
+        SubdomainController subdomainController = new SubdomainController{
+            value: 0.01 ether
+        }(address(nameWrapper), subdomainPrice);
         nameWrapper.setApprovalForAll(address(subdomainController), true);
 
         vm.stopBroadcast();

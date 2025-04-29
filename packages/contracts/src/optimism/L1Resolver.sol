@@ -74,6 +74,28 @@ contract L1Resolver is
         targetRegistrar = _targetRegistrar;
     }
 
+    /**
+     * @notice Updates the target registrar address
+     * @param _targetRegistrar The new target registrar address
+     */
+    function setTargetRegistrar(address _targetRegistrar) external {
+        require(
+            _targetRegistrar != address(0), "Invalid target registrar address"
+        );
+        targetRegistrar = _targetRegistrar;
+    }
+
+    /**
+     * @notice Updates the target resolver address
+     * @param _targetResolver The new target resolver address
+     */
+    function setTargetResolver(address _targetResolver) external {
+        require(
+            _targetResolver != address(0), "Invalid target resolver address"
+        );
+        targetResolver = _targetResolver;
+    }
+
     function isAuthorised(bytes32 /*node*/ )
         internal
         pure

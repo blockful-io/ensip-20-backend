@@ -19,9 +19,30 @@ contract SubdomainController is IERC165, OffchainRegister, ENSHelper {
     uint256 public price;
     INameWrapper nameWrapper;
 
-    constructor(address _nameWrapperAddress, uint256 _price) {
+    address public admin;
+    uint256 public prepaidBalance;
+
+    // Allowing only one registration per wallet
+    mapping(address => bool) public hasRegistered;
+
+    constructor(address _nameWrapperAddress, uint256 _price) payable {
         price = _price;
         nameWrapper = INameWrapper(_nameWrapperAddress);
+        admin = msg.sender;
+        prepaidBalance = msg.value;
+    }
+
+    function deposit() external payable {
+        require(msg.value > 0, "Must deposit some ETH");
+        prepaidBalance += msg.value;
+    }
+
+    function withdraw(uint256 amount) external {
+        require(msg.sender == admin, "Only admin can withdraw");
+        require(amount <= prepaidBalance, "Insufficient balance");
+        prepaidBalance -= amount;
+        (bool success,) = payable(admin).call{value: amount}("");
+        require(success, "Transfer failed");
     }
 
     function registerParams(
@@ -58,7 +79,21 @@ contract SubdomainController is IERC165, OffchainRegister, ENSHelper {
             nameWrapper.ownerOf(uint256(node)) == address(0),
             "domain already registered"
         );
-        require(msg.value >= price, "insufficient funds");
+
+        require(!hasRegistered[msg.sender], "Already registered a subdomain");
+        hasRegistered[msg.sender] = true;
+
+        if (prepaidBalance >= price) {
+            prepaidBalance -= price;
+
+            // Refund any ETH sent when registration gets funded
+            if (msg.value > 0) {
+                (bool success,) = payable(msg.sender).call{value: msg.value}("");
+                require(success, "Refund failed");
+            }
+        } else {
+            require(msg.value >= price, "Insufficient funds sent");
+        }
 
         nameWrapper.setSubnodeRecord(
             parentNode,
