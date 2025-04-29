@@ -48,7 +48,7 @@ This project not only makes ENS more efficient and cost-effective but also opens
 | BaseRegistrarImplementation | Optimism | [0x72CB51fBF9fa715AC7004b33c001385De28Ed504](https://sepolia-optimism.etherscan.io/address/0x72CB51fBF9fa715AC7004b33c001385De28Ed504) |
 | NameWrapper                 | Optimism | [0xfa304291C0e3B45b57e6205bfD48B50c6f1C2CEB](https://sepolia-optimism.etherscan.io/address/0xfa304291C0e3B45b57e6205bfD48B50c6f1C2CEB) |
 | ETHRegistrarController      | Optimism | [0x47426cC33E8330eD7488eE871f31880202a12254](https://sepolia-optimism.etherscan.io/address/0x47426cC33E8330eD7488eE871f31880202a12254) |
-| SubdomainController         | Optimism | [0x7611F6D8666901850A81ccd29a9e6C05990d101d](https://sepolia-optimism.etherscan.io/address/0x7611F6D8666901850A81ccd29a9e6C05990d101d) |
+| SubdomainController         | Optimism | [0x7b7aee0eD5929021F81D5d74d36eD6a640Ed9550](https://sepolia-optimism.etherscan.io/address/0x7b7aee0eD5929021F81D5d74d36eD6a640Ed9550) |
 | PublicResolver              | Optimism | [0x3fb3230d65DA8F2Ce71B1b7c5C9E56bdFfC2c40a](https://sepolia-optimism.etherscan.io/address/0x3fb3230d65DA8F2Ce71B1b7c5C9E56bdFfC2c40a) |
 
 ## Components

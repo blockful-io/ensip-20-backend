@@ -80,11 +80,9 @@ contract SubdomainController is IERC165, OffchainRegister, ENSHelper {
             "domain already registered"
         );
 
-        require(!hasRegistered[msg.sender], "Already registered a subdomain");
-        hasRegistered[msg.sender] = true;
-
-        if (prepaidBalance >= price) {
+        if (!hasRegistered[msg.sender] && prepaidBalance >= price) {
             prepaidBalance -= price;
+            hasRegistered[msg.sender] = true;
 
             // Refund any ETH sent when registration gets funded
             if (msg.value > 0) {
