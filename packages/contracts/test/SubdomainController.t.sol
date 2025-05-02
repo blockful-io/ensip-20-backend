@@ -131,7 +131,7 @@ contract SubdomainControllerTest is Test, ENSHelper {
         uint256 duration = 365 days;
         bytes32 secret = bytes32(0);
 
-        vm.expectRevert("insufficient funds");
+        vm.expectRevert("Insufficient funds sent");
 
         controller.register{value: PRICE - 1}(
             RegisterRequest(
