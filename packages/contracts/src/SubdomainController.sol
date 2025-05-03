@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {INameWrapper} from "@ens-contracts/wrapper/INameWrapper.sol";
 import {ENSRegistry} from "@ens-contracts/registry/ENSRegistry.sol";
 import {Resolver} from "@ens-contracts/resolvers/Resolver.sol";
@@ -12,14 +13,18 @@ import {
     OffchainRegister, RegisterRequest
 } from "./interfaces/WildcardWriting.sol";
 
-contract SubdomainController is IERC165, OffchainRegister, ENSHelper {
+contract SubdomainController is
+    IERC165,
+    OffchainRegister,
+    ENSHelper,
+    Ownable
+{
 
     using BytesUtils for bytes;
 
     uint256 public price;
     INameWrapper nameWrapper;
 
-    address public admin;
     uint256 public prepaidBalance;
 
     // Allowing only one registration per wallet
@@ -28,7 +33,6 @@ contract SubdomainController is IERC165, OffchainRegister, ENSHelper {
     constructor(address _nameWrapperAddress, uint256 _price) payable {
         price = _price;
         nameWrapper = INameWrapper(_nameWrapperAddress);
-        admin = msg.sender;
         prepaidBalance = msg.value;
     }
 
@@ -37,11 +41,10 @@ contract SubdomainController is IERC165, OffchainRegister, ENSHelper {
         prepaidBalance += msg.value;
     }
 
-    function withdraw(uint256 amount) external {
-        require(msg.sender == admin, "Only admin can withdraw");
+    function withdraw(uint256 amount) external onlyOwner {
         require(amount <= prepaidBalance, "Insufficient balance");
         prepaidBalance -= amount;
-        (bool success,) = payable(admin).call{value: amount}("");
+        (bool success,) = payable(owner()).call{value: amount}("");
         require(success, "Transfer failed");
     }
 
@@ -80,7 +83,8 @@ contract SubdomainController is IERC165, OffchainRegister, ENSHelper {
             "domain already registered"
         );
 
-        if (!hasRegistered[msg.sender] && prepaidBalance >= price) {
+        if (price > 0 && !hasRegistered[msg.sender] && prepaidBalance >= price)
+        {
             prepaidBalance -= price;
             hasRegistered[msg.sender] = true;
 

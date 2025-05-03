@@ -15,8 +15,8 @@ export default createConfig({
     schema: 'public',
   },
   networks: {
-    arbitrum_sepolia: {
-      chainId: 421614,
+    optimism_mainnet: {
+      chainId: 10,
       transport: http(process.env.RPC_URL),
       pollingInterval: parseInt(process.env.POOL_INTERVAL || '1000'),
       maxRequestsPerSecond: parseInt(process.env.MAX_REQUESTS || '50'),
@@ -24,22 +24,31 @@ export default createConfig({
   },
   contracts: {
     ENSRegistry: {
-      network: 'arbitrum_sepolia',
       abi: ENSRegistry,
-      address: '0x8d55e297c37993ebbd2e7a8d7688f7e5b35f1b50',
-      startBlock: 89197400,
+      network: {
+        optimism_mainnet: {
+          address: '0x28848853CED9B5f5702E7995471514A4b751d25d',
+          startBlock: 135306908,
+        },
+      },
     },
     NameWrapper: {
-      network: 'arbitrum_sepolia',
       abi: NameWrapper,
-      address: '0xff4f34ac12a84de527cf9e24856fc8d7c42cc379',
-      startBlock: 89197400,
+      network: {
+        optimism_mainnet: {
+          address: '0xFac46Cfd731aaEd4EfeB5D3F5336F2d7a2EEEEf3',
+          startBlock: 135310037,
+        },
+      },
     },
     PublicResolver: {
-      network: 'arbitrum_sepolia',
       abi: PublicResolver,
-      address: '0x0a33f065c9c8f0F5c56BB84b1593631725F0f3af',
-      startBlock: 89197400,
+      network: {
+        optimism_mainnet: {
+          address: '0x11bFDfbd625A6Ca9d4Ec8767f7341ff745075864',
+          startBlock: 135310518,
+        },
+      },
     },
   },
 })
