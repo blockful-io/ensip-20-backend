@@ -21,9 +21,18 @@ This project not only makes ENS more efficient and cost-effective but also opens
 
 ### Mainnet
 
-| Contract         | Network  | Address                                                                                                               |
-| ---------------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
-| DatabaseResolver | Ethereum | [0xBF3F57862717099319285c1E2664Cd583f35E333](https://etherscan.io/address/0xBF3F57862717099319285c1E2664Cd583f35E333) |
+| Contract                    | Network  | Address                                                                                                                          |
+| --------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| DatabaseResolver            | Ethereum | [0xBF3F57862717099319285c1E2664Cd583f35E333](https://etherscan.io/address/0xBF3F57862717099319285c1E2664Cd583f35E333)            |
+|                             |          |                                                                                                                                  |
+| OP Verifier                 | Ethereum | [0x617f49e3c51f34c53Ef416C5151481ed639a8881](https://etherscan.io/address/0x617f49e3c51f34c53Ef416C5151481ed639a8881)            |
+| OP L1Resolver               | Ethereum | [0x378aAd38906fac54f4a739F10B60F6674B64b932](https://etherscan.io/address/0x378aAd38906fac54f4a739F10B60F6674B64b932)            |
+| ENSRegistry                 | Optimism | [0x28848853CED9B5f5702E7995471514A4b751d25d](https://optimistic.etherscan.io/address/0x28848853CED9B5f5702E7995471514A4b751d25d) |
+| ReverseRegistrar            | Optimism | [0x72CD87Ee0F151072A5D265fd7093d7FBa13Abc47](https://optimistic.etherscan.io/address/0x72CD87Ee0F151072A5D265fd7093d7FBa13Abc47) |
+| BaseRegistrarImplementation | Optimism | [0x72CB51fBF9fa715AC7004b33c001385De28Ed504](https://optimistic.etherscan.io/address/0x72CB51fBF9fa715AC7004b33c001385De28Ed504) |
+| NameWrapper                 | Optimism | [0xFac46Cfd731aaEd4EfeB5D3F5336F2d7a2EEEEf3](https://optimistic.etherscan.io/address/0xFac46Cfd731aaEd4EfeB5D3F5336F2d7a2EEEEf3) |
+| SubdomainController         | Optimism | [0xf29C32Dfd0960c98CBe717269cd57ac6d51324Fe](https://optimistic.etherscan.io/address/0xf29C32Dfd0960c98CBe717269cd57ac6d51324Fe) |
+| PublicResolver              | Optimism | [0x11bFDfbd625A6Ca9d4Ec8767f7341ff745075864](https://optimistic.etherscan.io/address/0x11bFDfbd625A6Ca9d4Ec8767f7341ff745075864) |
 
 ### Sepolia
 

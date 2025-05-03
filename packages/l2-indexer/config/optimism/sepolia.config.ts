@@ -2,12 +2,7 @@ import { config } from 'dotenv'
 import { createConfig } from '@ponder/core'
 import { http } from 'viem'
 
-import {
-  ENSRegistry,
-  ETHRegistrarController,
-  NameWrapper,
-  PublicResolver,
-} from '../../abis'
+import { ENSRegistry, NameWrapper, PublicResolver } from '../../abis'
 
 config({
   path: process.env.ENV_FILE || '../../.env',
@@ -34,15 +29,6 @@ export default createConfig({
         optimism_sepolia: {
           address: '0x28848853CED9B5f5702E7995471514A4b751d25d',
           startBlock: 25821258,
-        },
-      },
-    },
-    ETHRegistrarController: {
-      abi: ETHRegistrarController,
-      network: {
-        optimism_sepolia: {
-          address: '0x47426cC33E8330eD7488eE871f31880202a12254',
-          startBlock: 25822324,
         },
       },
     },

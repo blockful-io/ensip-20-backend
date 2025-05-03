@@ -2,31 +2,6 @@ import { ponder } from '@/generated'
 import { zeroAddress, zeroHash } from 'viem'
 import { namehash } from 'viem/ens'
 
-ponder.on(
-  'ETHRegistrarController:NameRegistered',
-  async ({ event, context }) => {
-    const { domain } = context.db
-
-    const node = namehash(event.args.name)
-    const name = decodeDNSHex(event.args.name)
-    await domain.create({
-      id: node,
-      data: {
-        node,
-        name,
-        resolver: zeroAddress,
-        parent: namehash(extractParentFromName(name)),
-        owner: event.args.owner,
-        ttl: event.args.expires.toString(),
-        createdAt: new Date(
-          parseInt(event.block.timestamp.toString()) * 1000,
-        ).toISOString(),
-        updatedAt: new Date().toISOString(),
-      },
-    })
-  },
-)
-
 ponder.on('ENSRegistry:NewResolver', async ({ event, context }) => {
   const { domain } = context.db
 

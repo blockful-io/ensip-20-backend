@@ -5,6 +5,7 @@ script = "packages/contracts/script"
 out = "packages/contracts/out"
 libs = ["packages/contracts/lib"]
 viaIR = true
+optimizer = true
 remappings = [
   "@ens-contracts=node_modules/@ensdomains/ens-contracts/contracts",
   "@ensdomains=node_modules/@ensdomains",
@@ -35,8 +36,10 @@ sepolia = { key = "${ETHERSCAN_KEY}" }
 
 
 [rpc_endpoints]
+eth_mainnet = "${RPC_URL}"
 sepolia = "${RPC_URL}"
 arb_sepolia = "${L2_RPC_URL}"
+op_mainnet = "${RPC_URL}"
 op_sepolia = "${RPC_URL}"
 
 
